@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,16 +21,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         }
 
         //Переход на страницу отуса
+        @Step("Открытие страницы Отус")
         public pages.MainPage openPage () {
             super.driver.get(URL);
             return this;
         }
         //Переход на форму аутентификации
+        @Step("Нажатие кнопки авторизации")
         public pages.MainPage auth() {
             super.driver.findElement(auth).click();
             return this;
         }
+
         //Заполнить форму аутентификации
+        @Step("Ввод корректных данных аутентификации")
         public void fillAuthForm(String userName, String password) {
             (new WebDriverWait(super.driver, 5))
                     .until(ExpectedConditions.elementToBeClickable(submit));
@@ -43,6 +48,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         }
 
         //Проверить успешный вход
+        @Step("Проверка успешного входа на сайт")
         public boolean checkLogin() {
             return !super.driver.findElements(userMenu).isEmpty();
         }
